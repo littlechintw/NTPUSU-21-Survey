@@ -13,8 +13,7 @@
 
     <v-footer padless class="font-weight-medium">
       <v-col class="text-center" cols="12" style="font-size: 14px">
-        &copy; 2019 - {{ new Date().getFullYear() }} Copyright
-        <a href="https://littlechin.tw">littlechin.tw</a>. All rights reserved.
+        &copy; 2021 Copyright NTPU SU 21th. All rights reserved.
       </v-col>
     </v-footer>
   </v-app>
