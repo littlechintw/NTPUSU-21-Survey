@@ -19,7 +19,7 @@
             <v-list-item three-line>
               <v-list-item-content>
                 <v-list-item-title class="headline mb-1">
-                  輸入學號
+                  輸入學號以獲得專屬代碼與連結
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
@@ -51,7 +51,11 @@
               </v-list-item-content>
             </v-list-item>
             <v-container fluid style="text-align: center">
-              <p>複製信箱內的專屬代碼，並將代碼於代碼輸入欄內貼上。</p>
+              <p>複製信箱內的專屬代碼，並將代碼於信件內專屬連結內貼上。</p>
+              <p>
+                <b>注意！</b
+                >專屬連結僅能在使用送出驗證代碼的裝置與瀏覽器上使用，否則將會失效且喪失調查資格，代碼亦不再補發。
+              </p>
             </v-container>
           </v-card>
           <v-btn color="primary" @click="e1 = 3"> 下一步 </v-btn>
