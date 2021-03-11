@@ -103,6 +103,25 @@ export default {
       }
     },
     sendTokenByStudentId() {
+      let api_url =
+        "https://script.google.com/macros/s/AKfycbz6R4TMVKIdnVyYVWSWxTUnptkwVece8-fF7MXOH_W35GXV_jmiqx7K/exec?s=" +
+        this.$route.params.id;
+      this.$axios
+        .get(api_url)
+        .then((resp) => {
+          console.log(resp);
+          if (!resp.data.err) {
+            this.content = resp.data.t;
+            this.progressLinear.color = "info";
+            this.form.summit = false;
+          } else {
+            this.content = resp.data.message;
+          }
+        })
+        .catch((err) => {
+          alert(err);
+        });
+
       this.axios
         .get(
           "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec",
