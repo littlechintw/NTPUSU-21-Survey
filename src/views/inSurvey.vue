@@ -103,7 +103,7 @@ export default {
         this.studentId +
         "&d=" +
         md5(this.token) +
-        "&s=done";
+        "&s=6e384735-2c6b-4cee-9c57-8abc83e6d076";
       this.$http
         .get(url)
         .then((response) => {
