@@ -103,11 +103,11 @@ export default {
       }
     },
     sendTokenByStudentId() {
-      let api_url =
+      let url =
         "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec?m=s&i=" +
         this.studentId;
-      this.$axios
-        .get(api_url)
+      this.$http
+        .get(url)
         .then((response) => {
           console.log(response);
           this.formLoadingShow = false;
@@ -125,6 +125,29 @@ export default {
           this.formTipsShow = true;
           this.formTips = "無法存取後端服務";
         });
+
+      // let api_url =
+      //   "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec?m=s&i=" +
+      //   this.studentId;
+      // this.$axios
+      //   .get(api_url)
+      //   .then((response) => {
+      //     console.log(response);
+      //     this.formLoadingShow = false;
+      //     this.formTipsShow = true;
+      //     if (!response.data.err) {
+      //       this.formTips = "請到信箱找找 Token";
+      //       localStorage.setItem("stuid", this.studentId);
+      //     } else {
+      //       this.formTips = "Error! 已經取得 Token 或其他錯誤";
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //     this.formShow = true;
+      //     this.formTipsShow = true;
+      //     this.formTips = "無法存取後端服務";
+      //   });
 
       // this.axios
       //   .get(

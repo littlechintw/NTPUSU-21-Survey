@@ -6,9 +6,9 @@ import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 
-// axios
-import axios from 'axios'
-Vue.prototype.$axios = axios
+// Vue-Resource
+import VueResource from 'vue-resource';
+Vue.use(VueResource);
 
 new Vue({
   router,
