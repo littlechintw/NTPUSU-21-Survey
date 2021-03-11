@@ -96,6 +96,31 @@ export default {
       }
     },
     sendTokenByStudentId() {
+      let url =
+        "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec?m=v&i=" +
+        this.studentId +
+        "&d=" +
+        this.token +
+        "&s=done";
+      this.$http
+        .get(url)
+        .then((response) => {
+          console.log(response);
+          this.formLoadingShow = false;
+          this.formTipsShow = true;
+          if (!response.data.err) {
+            this.formTips = "成功投票";
+            localStorage.setItem("stuid", this.studentId);
+          } else {
+            this.formTips = "Error! Token 輸入錯誤或其他錯誤";
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.formShow = true;
+          this.formTipsShow = true;
+          this.formTips = "無法存取後端服務";
+        });
       this.axios
         .get(
           "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec",
