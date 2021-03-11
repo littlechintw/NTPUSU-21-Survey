@@ -104,34 +104,10 @@ export default {
     },
     sendTokenByStudentId() {
       let api_url =
-        "https://script.google.com/macros/s/AKfycbz6R4TMVKIdnVyYVWSWxTUnptkwVece8-fF7MXOH_W35GXV_jmiqx7K/exec?s=" +
-        this.$route.params.id;
+        "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec?m=s&i=" +
+        this.studentId;
       this.$axios
         .get(api_url)
-        .then((resp) => {
-          console.log(resp);
-          if (!resp.data.err) {
-            this.content = resp.data.t;
-            this.progressLinear.color = "info";
-            this.form.summit = false;
-          } else {
-            this.content = resp.data.message;
-          }
-        })
-        .catch((err) => {
-          alert(err);
-        });
-
-      this.axios
-        .get(
-          "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec",
-          {
-            params: {
-              m: "s",
-              i: this.studentId,
-            },
-          }
-        )
         .then((response) => {
           console.log(response);
           this.formLoadingShow = false;
@@ -149,6 +125,34 @@ export default {
           this.formTipsShow = true;
           this.formTips = "無法存取後端服務";
         });
+
+      // this.axios
+      //   .get(
+      //     "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec",
+      //     {
+      //       params: {
+      //         m: "s",
+      //         i: this.studentId,
+      //       },
+      //     }
+      //   )
+      //   .then((response) => {
+      //     console.log(response);
+      //     this.formLoadingShow = false;
+      //     this.formTipsShow = true;
+      //     if (!response.data.err) {
+      //       this.formTips = "請到信箱找找 Token";
+      //       localStorage.setItem("stuid", this.studentId);
+      //     } else {
+      //       this.formTips = "Error! 已經取得 Token 或其他錯誤";
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //     this.formShow = true;
+      //     this.formTipsShow = true;
+      //     this.formTips = "無法存取後端服務";
+      //   });
     },
   },
   mounted: function () {},
