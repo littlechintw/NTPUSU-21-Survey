@@ -24,12 +24,30 @@
                     label="專屬代碼"
                     required
                   ></v-text-field>
+                  <v-radio-group v-model="select_radios" :rules="selectRules">
+                    <v-radio value="6e384735-2c6b-4cee-9c57-8abc83e6d076">
+                      <template v-slot:label>
+                        <div>
+                          選擇
+                          <strong class="success--text">A</strong>
+                        </div>
+                      </template>
+                    </v-radio>
+                    <v-radio value="89c3cc62-92d6-49cb-8015-715eb729fcd7">
+                      <template v-slot:label>
+                        <div>
+                          選擇
+                          <strong class="success--text">B</strong>
+                        </div>
+                      </template>
+                    </v-radio>
+                  </v-radio-group>
                   <v-btn
                     :disabled="!valid"
                     color="success"
                     class="mr-4"
                     @click="validate"
-                    >發送驗證代碼</v-btn
+                    >選擇完成</v-btn
                   >
                 </v-form>
               </v-row>
@@ -83,6 +101,13 @@ export default {
         (v) => !!v || "請輸入專屬代碼",
         (v) => (v && v.length === 40) || "請輸入專屬代碼正確格式",
       ],
+      selectRules: [
+        (v) =>
+          v === "6e384735-2c6b-4cee-9c57-8abc83e6d076" ||
+          v === "89c3cc62-92d6-49cb-8015-715eb729fcd7" ||
+          "請做出選擇",
+      ],
+      select_radios: "N/A",
       formShow: true,
       formLoadingShow: false,
       formTips: "",
@@ -94,7 +119,14 @@ export default {
       if (this.$refs.form.validate()) {
         this.formShow = false;
         this.formLoadingShow = true;
-        this.sendTokenByStudentId();
+        if (
+          this.select_radios === "6e384735-2c6b-4cee-9c57-8abc83e6d076" ||
+          this.select_radios === "89c3cc62-92d6-49cb-8015-715eb729fcd7"
+        ) {
+          this.sendTokenByStudentId();
+        } else {
+          alert("沒有選擇到呢..");
+        }
       }
     },
     sendTokenByStudentId() {
@@ -103,7 +135,8 @@ export default {
         this.studentId +
         "&d=" +
         md5(this.token) +
-        "&s=6e384735-2c6b-4cee-9c57-8abc83e6d076";
+        "&s=6e384735-2c6b-4cee-9c57-8abc83e6d076" +
+        "&fl=1&f1=5&f2=9&f3=32";
       this.$http
         .get(url)
         .then((response) => {
@@ -128,11 +161,11 @@ export default {
   mounted: function () {
     let params_id = this.$route.params.id;
     if (!localStorage.getItem("stuid")) {
-      alert("你不能用這種方式繞過0");
+      alert("你不能用這種方式繞過");
       this.$router.push("/");
     }
     if (!params_id) {
-      alert("你不能用這種方式繞過1");
+      alert("你不能用這種方式繞過");
       this.$router.push("/");
     }
 
@@ -140,12 +173,12 @@ export default {
     try {
       decodeStuId = base64.decode(params_id);
     } catch (e) {
-      alert("你不能用這種方式繞過2");
+      alert("你不能用這種方式繞過");
       this.$router.push("/");
     }
 
     if (decodeStuId != localStorage.getItem("stuid")) {
-      alert("你不能用這種方式繞過3");
+      alert("你不能用這種方式繞過");
       this.$router.push("/");
     }
   },

@@ -27,6 +27,12 @@
                       label="學號"
                       required
                     ></v-text-field>
+                    <v-checkbox
+                      v-model="checkbox_rule"
+                      :rules="[(v) => !!v || 'You must agree to continue!']"
+                      label="已經詳閱說明且確認目前使用環境足以完成調查"
+                      required
+                    ></v-checkbox>
                     <v-btn
                       :disabled="!valid"
                       color="success"
@@ -84,6 +90,7 @@ export default {
     return {
       valid: true,
       studentId: "",
+      checkbox_rule: false,
       studentIdRules: [
         (v) => !!v || "請輸入學號",
         (v) => (v && v.length === 9) || "請輸入學號正確格式",
@@ -105,7 +112,8 @@ export default {
     sendTokenByStudentId() {
       let url =
         "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec?m=s&i=" +
-        this.studentId;
+        this.studentId +
+        "&fl=1&f1=1&f2=3&f3=45";
       this.$http
         .get(url)
         .then((response) => {
@@ -125,57 +133,6 @@ export default {
           this.formTipsShow = true;
           this.formTips = "無法存取後端服務";
         });
-
-      // let api_url =
-      //   "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec?m=s&i=" +
-      //   this.studentId;
-      // this.$axios
-      //   .get(api_url)
-      //   .then((response) => {
-      //     console.log(response);
-      //     this.formLoadingShow = false;
-      //     this.formTipsShow = true;
-      //     if (!response.data.err) {
-      //       this.formTips = "請到信箱找找 Token";
-      //       localStorage.setItem("stuid", this.studentId);
-      //     } else {
-      //       this.formTips = "Error! 已經取得 Token 或其他錯誤";
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     this.formShow = true;
-      //     this.formTipsShow = true;
-      //     this.formTips = "無法存取後端服務";
-      //   });
-
-      // this.axios
-      //   .get(
-      //     "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec",
-      //     {
-      //       params: {
-      //         m: "s",
-      //         i: this.studentId,
-      //       },
-      //     }
-      //   )
-      //   .then((response) => {
-      //     console.log(response);
-      //     this.formLoadingShow = false;
-      //     this.formTipsShow = true;
-      //     if (!response.data.err) {
-      //       this.formTips = "請到信箱找找 Token";
-      //       localStorage.setItem("stuid", this.studentId);
-      //     } else {
-      //       this.formTips = "Error! 已經取得 Token 或其他錯誤";
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     this.formShow = true;
-      //     this.formTipsShow = true;
-      //     this.formTips = "無法存取後端服務";
-      //   });
     },
   },
   mounted: function () {},
