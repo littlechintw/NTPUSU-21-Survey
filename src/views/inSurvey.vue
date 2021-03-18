@@ -123,9 +123,17 @@ export default {
           this.select_radios === "6e384735-2c6b-4cee-9c57-8abc83e6d076" ||
           this.select_radios === "89c3cc62-92d6-49cb-8015-715eb729fcd7"
         ) {
-          this.sendTokenByStudentId();
+          if (this.studentId === base64.decode(this.$route.params.id)) {
+            this.sendTokenByStudentId();
+          } else {
+            alert("Oh! 請檢查輸入資料");
+            this.formShow = true;
+            this.formLoadingShow = false;
+          }
         } else {
           alert("沒有選擇到呢..");
+          this.formShow = true;
+          this.formLoadingShow = false;
         }
       }
     },
@@ -146,7 +154,7 @@ export default {
           this.formTipsShow = true;
           if (!response.data.err) {
             this.formTips = "成功投票";
-            localStorage.setItem("stuid", this.studentId);
+            localStorage.removeItem("stuid");
           } else {
             this.formTips = "Error! Token 輸入錯誤或其他錯誤";
           }
