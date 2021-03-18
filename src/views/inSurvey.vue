@@ -135,7 +135,8 @@ export default {
         this.studentId +
         "&d=" +
         md5(this.token) +
-        "&s=6e384735-2c6b-4cee-9c57-8abc83e6d076" +
+        "&s=" +
+        this.select_radios +
         "&fl=1&f1=5&f2=9&f3=32";
       this.$http
         .get(url)
