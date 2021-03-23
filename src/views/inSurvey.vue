@@ -139,7 +139,7 @@ export default {
     },
     sendTokenByStudentId() {
       let url =
-        "https://script.google.com/macros/s/AKfycbxbillG4f0kXyI1K-gO27-Hv1mJL7rF3ApXcu7dZP7R1dkdA_rJSLWCW6jT2IMRAv27nA/exec?m=v&i=" +
+        "https://script.google.com/macros/s/AKfycbzJdqfdHNipk-ml_CjOzY-6gHXB28JIcw1CEpswvdub592cyEcBpKyEGRlkPD0Q3R9_dA/exec?m=v&i=" +
         this.studentId +
         "&d=" +
         md5(this.token) +
