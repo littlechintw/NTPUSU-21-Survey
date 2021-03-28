@@ -175,7 +175,7 @@ export default {
     },
     sendTokenByStudentId() {
       let url =
-        "https://script.google.com/macros/s/AKfycbzJdqfdHNipk-ml_CjOzY-6gHXB28JIcw1CEpswvdub592cyEcBpKyEGRlkPD0Q3R9_dA/exec?m=s&i=" +
+        "https://script.google.com/macros/s/AKfycbz2NO92j4yNf-esodG9iSz8-xwqJQ67kRKHTgi1hmf1YIVWoCL_Ns2k_MqblYgZNtRXpg/exec?m=s&i=" +
         this.studentId +
         "&fl=1&f1=1&f2=3&f3=45";
       this.$http
