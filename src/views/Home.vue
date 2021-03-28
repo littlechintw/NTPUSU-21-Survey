@@ -52,7 +52,7 @@
                 <br /><br />
                 <v-row align="center" justify="center" length>
                   <v-btn
-                    color="black"
+                    color="#87C1A2"
                     elevation="12"
                     rounded
                     x-large
@@ -97,7 +97,8 @@
                         ></v-checkbox>
                         <v-btn
                           :disabled="!valid"
-                          color="success"
+                          color="#87C1A2"
+                          dark
                           class="mr-4"
                           @click="validate"
                           >發送驗證代碼</v-btn

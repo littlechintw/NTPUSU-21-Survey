@@ -30,7 +30,8 @@
         </p>
         <v-btn color="primary" @click="e1 = 2"> 繼續 </v-btn>
         <v-btn
-          color="grey lighten-2"
+          color="#738E9B"
+          dark
           href="https://webmail.ntpu.edu.tw/indexi.html"
           target="_blank"
         >

@@ -3,11 +3,35 @@
     <br />
     <v-card elevation="0">
       <v-container fluid>
-        <v-row>
+        <v-row style="background-color: #e9e8e7">
           <v-col cols="12">
             <v-row align="center" justify="center" length>
-              <p style="font-size: 64px">2021 校長遴選意向調查</p>
+              <img src="../image/cover.png" width="100%" />
             </v-row>
+            <v-row align="center" justify="center" length> <br /><br /> </v-row>
+            <v-row align="center" justify="center" length>
+              <p
+                style="
+                  font-size: 18px;
+                  line-height: 18px;
+                  background-color: #e9e8e7;
+                "
+              >
+                國立臺北大學第八任校長遴選
+              </p>
+            </v-row>
+            <v-row align="center" justify="center" length>
+              <p
+                style="
+                  font-size: 30px;
+                  line-height: 18px;
+                  background-color: #e9e8e7;
+                "
+              >
+                意向調查
+              </p>
+            </v-row>
+            <br /><br />
             <div v-show="formShow">
               <v-row align="center" justify="center" length>
                 <v-form ref="form" v-model="valid" lazy-validation>
@@ -29,7 +53,7 @@
                       <template v-slot:label>
                         <div>
                           選擇
-                          <strong class="success--text">A</strong>
+                          <strong class="success--text">測試人物 A</strong>
                         </div>
                       </template>
                     </v-radio>
@@ -37,14 +61,14 @@
                       <template v-slot:label>
                         <div>
                           選擇
-                          <strong class="success--text">B</strong>
+                          <strong class="success--text">測試人物 B</strong>
                         </div>
                       </template>
                     </v-radio>
                   </v-radio-group>
                   <v-btn
                     :disabled="!valid"
-                    color="success"
+                    color="#87C1A2"
                     class="mr-4"
                     @click="validate"
                     >選擇完成</v-btn
