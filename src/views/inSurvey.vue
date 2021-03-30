@@ -182,6 +182,7 @@ export default {
             this.tipsColor = "#BDFE63";
             localStorage.removeItem("stuid");
           } else {
+            this.formShow = true;
             this.formTips = "Error! Token 輸入錯誤或其他錯誤";
             this.tipsColor = "#FE7163";
           }

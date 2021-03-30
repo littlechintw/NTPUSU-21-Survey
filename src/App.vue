@@ -3,7 +3,7 @@
     <div class="inapp">
       <v-app-bar app dark color="#9B7575">
         <v-spacer></v-spacer>
-        <h2>NTPUSU Survey</h2>
+        <h2>NTPUSU Survey (Test Mode)</h2>
         <v-spacer></v-spacer>
       </v-app-bar>
 

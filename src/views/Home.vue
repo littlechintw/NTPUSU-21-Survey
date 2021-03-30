@@ -194,7 +194,7 @@ export default {
           this.formTipsShow = true;
           if (!response.data.err) {
             this.tipsColor = "#BDFE63";
-            this.formTips = "請到信箱找找 Token";
+            this.formTips = "正在寄信至 s" + this.studentId + "@webmail.ntpu.edu.tw，請到信箱找找 Token";
             localStorage.setItem("stuid", this.studentId);
           } else {
             this.formTips = "Error! 已經取得 Token 或其他錯誤";
