@@ -86,7 +86,7 @@
             </div>
             <div v-show="formTipsShow">
               <v-row align="center" justify="center" length>
-                <v-card width="344" elevation="0" color="#BDFE63">
+                <v-card width="344" elevation="0" :color="tipsColor">
                   {{ formTips }}
                 </v-card>
               </v-row>
@@ -136,6 +136,7 @@ export default {
       formLoadingShow: false,
       formTips: "",
       formTipsShow: true,
+      tipsColor: "#BDFE63",
     };
   },
   methods: {
@@ -178,9 +179,11 @@ export default {
           this.formTipsShow = true;
           if (!response.data.err) {
             this.formTips = "成功投票";
+            this.tipsColor = "#BDFE63";
             localStorage.removeItem("stuid");
           } else {
             this.formTips = "Error! Token 輸入錯誤或其他錯誤";
+            this.tipsColor = "#FE7163";
           }
         })
         .catch((error) => {
@@ -188,6 +191,7 @@ export default {
           this.formShow = true;
           this.formTipsShow = true;
           this.formTips = "無法存取後端服務";
+          this.tipsColor = "#FE7163";
         });
     },
   },

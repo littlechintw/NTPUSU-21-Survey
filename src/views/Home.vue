@@ -69,7 +69,12 @@
                 <br /><br /><br />
                 <div v-show="formShow">
                   <v-row align="center" justify="center" length>
-                    <v-form ref="form" v-model="valid" lazy-validation>
+                    <v-form
+                      ref="form"
+                      v-model="valid"
+                      lazy-validation
+                      :disabled="formClose"
+                    >
                       <v-card
                         elevation="0"
                         width="344px"
@@ -92,7 +97,7 @@
                         <v-checkbox
                           v-model="checkbox_rule"
                           :rules="[(v) => !!v || 'You must agree to continue!']"
-                          label="已經詳閱說明且確認目前使用環境足以完成調查"
+                          label="已經詳閱說明且確認目前使用環境足以完成調查 （為提升安全性，送出申請後將會綁定此瀏覽器為主要投票環境，如未使用此瀏覽器與裝置，將會無法參與投票，且失去投票資格，也請使用正常模式瀏覽網頁，使用無痕模式將不保證能成功運作。簡單來說，如果擔心，請複製網址，並打開 Chrome 或相關瀏覽器，並且勿打開無痕模式，當收到確認信件時，再將專屬網址複製至現在使用的瀏覽器，並貼上專屬代碼完成調查！）"
                           required
                         ></v-checkbox>
                         <v-btn
@@ -125,7 +130,7 @@
                 </div>
                 <div v-show="formTipsShow">
                   <v-row align="center" justify="center" length>
-                    <v-card width="344" elevation="0" color="#BDFE63">
+                    <v-card width="344" elevation="0" :color="tipsColor">
                       {{ formTips }}
                     </v-card>
                   </v-row>
@@ -164,6 +169,8 @@ export default {
       formLoadingShow: false,
       formTips: "",
       formTipsShow: true,
+      tipsColor: "#BDFE63",
+      formClose: false,
     };
   },
   methods: {
@@ -186,10 +193,12 @@ export default {
           this.formLoadingShow = false;
           this.formTipsShow = true;
           if (!response.data.err) {
+            this.tipsColor = "#BDFE63";
             this.formTips = "請到信箱找找 Token";
             localStorage.setItem("stuid", this.studentId);
           } else {
             this.formTips = "Error! 已經取得 Token 或其他錯誤";
+            this.tipsColor = "#FE7163";
           }
         })
         .catch((error) => {
@@ -197,10 +206,18 @@ export default {
           this.formShow = true;
           this.formTipsShow = true;
           this.formTips = "無法存取後端服務";
+          this.tipsColor = "#FE7163";
         });
     },
   },
-  mounted: function () {},
+  mounted: function () {
+    if (localStorage.getItem("stuid")) {
+      this.formTipsShow = true;
+      this.formClose = true;
+      this.tipsColor = "#FE7163";
+      this.formTips = "Error! 噢不，你還在進行調查中，請勿重新申請";
+    }
+  },
 };
 </script>
 
