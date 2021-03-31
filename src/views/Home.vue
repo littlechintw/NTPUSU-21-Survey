@@ -134,6 +134,21 @@
                       {{ formTips }}
                     </v-card>
                   </v-row>
+                  <div v-show="successApply">
+                    <v-row align="center" justify="center" length>
+                      <br />
+                    </v-row>
+                    <v-row align="center" justify="center" length>
+                      <v-btn
+                        color="#738E9B"
+                        dark
+                        href="https://webmail.ntpu.edu.tw/indexi.html"
+                        target="_blank"
+                      >
+                        <v-icon left> mdi-mail </v-icon>北大信件系統</v-btn
+                      >
+                    </v-row>
+                  </div>
                 </div>
               </div>
             </transition>
@@ -171,6 +186,7 @@ export default {
       formTipsShow: true,
       tipsColor: "#BDFE63",
       formClose: false,
+      successApply: false,
     };
   },
   methods: {
@@ -194,7 +210,11 @@ export default {
           this.formTipsShow = true;
           if (!response.data.err) {
             this.tipsColor = "#BDFE63";
-            this.formTips = "正在寄信至 s" + this.studentId + "@webmail.ntpu.edu.tw，請到信箱找找 Token";
+            this.successApply = true;
+            this.formTips =
+              "正在寄信至 s" +
+              this.studentId +
+              "@webmail.ntpu.edu.tw，請到信箱找找 Token";
             localStorage.setItem("stuid", this.studentId);
           } else {
             this.formTips = "Error! 已經取得 Token 或其他錯誤";
