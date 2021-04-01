@@ -206,19 +206,24 @@ export default {
         .get(url)
         .then((response) => {
           console.log(response);
-          this.formLoadingShow = false;
-          this.formTipsShow = true;
-          if (!response.data.err) {
-            this.tipsColor = "#BDFE63";
-            this.successApply = true;
-            this.formTips =
-              "正在寄信至 s" +
-              this.studentId +
-              "@webmail.ntpu.edu.tw，請到信箱找找 Token";
-            localStorage.setItem("stuid", this.studentId);
-          } else {
-            this.formTips = "Error! 已經取得 Token 或其他錯誤";
+          if (response.data.errCode == 77) {
+            this.formTips = "Error! 超出調查時間";
             this.tipsColor = "#FE7163";
+          } else {
+            this.formLoadingShow = false;
+            this.formTipsShow = true;
+            if (!response.data.err) {
+              this.tipsColor = "#BDFE63";
+              this.successApply = true;
+              this.formTips =
+                "正在寄信至 s" +
+                this.studentId +
+                "@webmail.ntpu.edu.tw，請到信箱找找 Token";
+              localStorage.setItem("stuid", this.studentId);
+            } else {
+              this.formTips = "Error! 已經取得 Token 或其他錯誤";
+              this.tipsColor = "#FE7163";
+            }
           }
         })
         .catch((error) => {

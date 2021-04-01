@@ -272,22 +272,26 @@ export default {
         .get(url)
         .then((response) => {
           console.log(response);
-          this.formLoadingShow = false;
-          this.formTipsShow = true;
-          if (!response.data.err) {
-            this.formTips = "成功投票";
-            this.tipsColor = "#BDFE63";
-            localStorage.removeItem("stuid");
-          } else {
-            if (response.data.errCode == 3) {
-              this.formTips = "Error! Token 輸入錯誤或其他錯誤";
-            } else {
-              this.formTips =
-                "Error! 你可能因嘗試攻擊或嘗試次數已達上限，故代碼已經封鎖，且無法再次申請";
-            }
-            this.formShow = true;
-
+          if (response.data.errCode == 77) {
+            this.formTips = "Error! 超出調查時間";
             this.tipsColor = "#FE7163";
+          } else {
+            this.formLoadingShow = false;
+            this.formTipsShow = true;
+            if (!response.data.err) {
+              this.formTips = "成功投票";
+              this.tipsColor = "#BDFE63";
+              localStorage.removeItem("stuid");
+            } else {
+              if (response.data.errCode == 3) {
+                this.formTips = "Error! Token 輸入錯誤或其他錯誤";
+              } else {
+                this.formTips =
+                  "Error! 你可能因嘗試攻擊或嘗試次數已達上限，故代碼已經封鎖，且無法再次申請";
+              }
+              this.formShow = true;
+              this.tipsColor = "#FE7163";
+            }
           }
         })
         .catch((error) => {
