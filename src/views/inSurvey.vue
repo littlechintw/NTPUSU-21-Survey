@@ -76,6 +76,51 @@
                 </v-form>
               </v-row>
             </div>
+            <div v-show="confirmPage">
+              <v-card elevation="0" style="background-color: #fe63a2">
+                <v-container fluid>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-row align="center" justify="center" length>
+                        <p style="font-size: 150%">
+                          確定要投給
+                          <strong style="color: #ffddec">{{
+                            selectPerson
+                          }}</strong>
+                          嗎？
+                        </p>
+                      </v-row>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+              <br /><br />
+              <v-row style="background-color: #e9e8e7">
+                <v-col cols="12">
+                  <v-row align="center" justify="center" length>
+                    <v-btn
+                      color="black"
+                      elevation="12"
+                      rounded
+                      x-large
+                      dark
+                      v-on:click="confirmAndSend(true)"
+                      style="font-size: 150%"
+                      >確 定</v-btn
+                    >
+                    <v-btn
+                      color="white"
+                      elevation="12"
+                      rounded
+                      large
+                      v-on:click="confirmAndSend(false)"
+                      style="font-size: 100%"
+                      >重 選</v-btn
+                    >
+                  </v-row>
+                </v-col>
+              </v-row>
+            </div>
             <div v-show="formLoadingShow">
               <v-row align="center" justify="center" length>
                 <v-progress-circular
@@ -85,6 +130,7 @@
               </v-row>
             </div>
             <div v-show="formTipsShow">
+              <br /><br />
               <v-row align="center" justify="center" length>
                 <v-card width="344" elevation="0" :color="tipsColor">
                   {{ formTips }}
@@ -137,19 +183,69 @@ export default {
       formTips: "",
       formTipsShow: true,
       tipsColor: "#BDFE63",
+      confirmPage: false,
+      selectPerson: "N/A",
+      person: [
+        { uuid: "6e384735-2c6b-4cee-9c57-8abc83e6d076", name: "測試人物 A" },
+        { uuid: "89c3cc62-92d6-49cb-8015-715eb729fcd7", name: "測試人物 B" },
+      ],
     };
   },
   methods: {
     validate() {
       if (this.$refs.form.validate()) {
         this.formShow = false;
+        // this.formLoadingShow = true;
+        if (
+          this.select_radios === "6e384735-2c6b-4cee-9c57-8abc83e6d076" ||
+          this.select_radios === "89c3cc62-92d6-49cb-8015-715eb729fcd7"
+        ) {
+          if (this.studentId === base64.decode(this.$route.params.id)) {
+            // this.sendTokenByStudentId();
+            var searchFlag = false;
+            for (var i = 0; i < this.person.length; i++) {
+              // alert("start");
+              if (this.select_radios === this.person[i].uuid) {
+                // alert(this.select_radios);
+                // alert(this.person[i].uuid);
+                this.selectPerson = this.person[i].name;
+                searchFlag = true;
+              }
+            }
+            if (searchFlag) {
+              this.confirmPage = true;
+            } else {
+              alert("那你很會駭欸");
+              this.$router.push("/");
+            }
+          } else {
+            alert("Oh! 請檢查輸入資料");
+            this.formShow = true;
+            this.formLoadingShow = false;
+          }
+        } else {
+          alert("沒有選擇到呢..");
+          this.formShow = true;
+          this.formLoadingShow = false;
+        }
+      }
+    },
+    confirmAndSend(flag) {
+      if (this.$refs.form.validate()) {
+        this.formShow = false;
+        this.confirmPage = false;
         this.formLoadingShow = true;
         if (
           this.select_radios === "6e384735-2c6b-4cee-9c57-8abc83e6d076" ||
           this.select_radios === "89c3cc62-92d6-49cb-8015-715eb729fcd7"
         ) {
           if (this.studentId === base64.decode(this.$route.params.id)) {
-            this.sendTokenByStudentId();
+            if (flag) {
+              this.sendTokenByStudentId();
+            } else {
+              this.formShow = true;
+              this.formLoadingShow = false;
+            }
           } else {
             alert("Oh! 請檢查輸入資料");
             this.formShow = true;
@@ -163,8 +259,9 @@ export default {
       }
     },
     sendTokenByStudentId() {
+      this.formTipsShow = false;
       let url =
-        "https://script.google.com/macros/s/AKfycbz2NO92j4yNf-esodG9iSz8-xwqJQ67kRKHTgi1hmf1YIVWoCL_Ns2k_MqblYgZNtRXpg/exec?m=v&i=" +
+        "https://script.google.com/macros/s/AKfycbx-kVG_DCwT0XcgxWbORsmT2cElVVyOl6-QUgP5aEV5np9W-C4K79kU16JRf1yr_Gfo0g/exec?m=v&i=" +
         this.studentId +
         "&d=" +
         md5(this.token) +
@@ -182,8 +279,14 @@ export default {
             this.tipsColor = "#BDFE63";
             localStorage.removeItem("stuid");
           } else {
+            if (response.data.errCode == 3) {
+              this.formTips = "Error! Token 輸入錯誤或其他錯誤";
+            } else {
+              this.formTips =
+                "Error! 你可能因嘗試攻擊或嘗試次數已達上限，故代碼已經封鎖，且無法再次申請";
+            }
             this.formShow = true;
-            this.formTips = "Error! Token 輸入錯誤或其他錯誤";
+
             this.tipsColor = "#FE7163";
           }
         })
