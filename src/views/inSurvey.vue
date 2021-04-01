@@ -28,7 +28,7 @@
                   background-color: #e9e8e7;
                 "
               >
-                意向調查
+                學生意向調查
               </p>
             </v-row>
             <br /><br />
