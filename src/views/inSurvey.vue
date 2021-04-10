@@ -261,7 +261,7 @@ export default {
     sendTokenByStudentId() {
       this.formTipsShow = false;
       let url =
-        "https://script.google.com/macros/s/AKfycbx-kVG_DCwT0XcgxWbORsmT2cElVVyOl6-QUgP5aEV5np9W-C4K79kU16JRf1yr_Gfo0g/exec?m=v&i=" +
+        "https://script.google.com/macros/s/AKfycbyC6_nqD3wgMbSGYzlIoP2IKtjmVDcqJ5X_rpmkDRZu_TpJe0QLxOXyXRZeFgfVgY7LRw/exec?m=v&i=" +
         this.studentId +
         "&d=" +
         md5(this.token) +
@@ -272,9 +272,10 @@ export default {
         .get(url)
         .then((response) => {
           console.log(response);
-          if (response.data.errCode == 77) {
-            this.formTips = "Error! 超出調查時間";
+          if (response.data.errCode == 403) {
+            this.formTips = "Error! 現在非調查時間";
             this.tipsColor = "#FE7163";
+            this.formLoadingShow = false;
           } else {
             this.formLoadingShow = false;
             this.formTipsShow = true;
