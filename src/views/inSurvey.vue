@@ -53,7 +53,9 @@
                       <template v-slot:label>
                         <div>
                           選擇
-                          <strong class="success--text">測試人物 A</strong>
+                          <strong class="success--text"
+                            >一號候選人 - 李承嘉教授</strong
+                          >
                         </div>
                       </template>
                     </v-radio>
@@ -61,7 +63,9 @@
                       <template v-slot:label>
                         <div>
                           選擇
-                          <strong class="success--text">測試人物 B</strong>
+                          <strong class="success--text"
+                            >二號候選人 - 黃朝盟教授</strong
+                          >
                         </div>
                       </template>
                     </v-radio>
@@ -137,11 +141,32 @@
                 </v-card>
               </v-row>
             </div>
+            <br /><br />
+            <v-card elevation="0">
+              <v-row>
+                <v-col cols="12" style="background-color: #e9e8e7">
+                  <v-row align="center" justify="center" length>
+                    <v-card
+                      elevation="0"
+                      max-width="344px"
+                      style="background-color: #ebcfc4"
+                    >
+                      <p>
+                        發生問題？ 寄信至
+                        <br /><a href="mailto:ntpu-su-21th-it@googlegroups.com"
+                          >ntpu-su-21th-it@googlegroups.com</a
+                        >
+                      </p>
+                    </v-card>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </v-card>
           </v-col>
         </v-row>
       </v-container>
     </v-card>
-    <br /><br /><br /><br />
+    <br /><br />
 
     <!-- <Description /> -->
   </div>
@@ -186,8 +211,14 @@ export default {
       confirmPage: false,
       selectPerson: "N/A",
       person: [
-        { uuid: "6e384735-2c6b-4cee-9c57-8abc83e6d076", name: "測試人物 A" },
-        { uuid: "89c3cc62-92d6-49cb-8015-715eb729fcd7", name: "測試人物 B" },
+        {
+          uuid: "6e384735-2c6b-4cee-9c57-8abc83e6d076",
+          name: "一號候選人 - 李承嘉教授",
+        },
+        {
+          uuid: "89c3cc62-92d6-49cb-8015-715eb729fcd7",
+          name: "二號候選人 - 黃朝盟教授",
+        },
       ],
     };
   },
@@ -276,6 +307,7 @@ export default {
             this.formTips = "Error! 現在非調查時間";
             this.tipsColor = "#FE7163";
             this.formLoadingShow = false;
+            this.formTipsShow = true;
           } else {
             this.formLoadingShow = false;
             this.formTipsShow = true;

@@ -152,6 +152,27 @@
                 </div>
               </div>
             </transition>
+            <br /><br /><br />
+            <v-card elevation="0">
+              <v-row>
+                <v-col cols="12" style="background-color: #e9e8e7">
+                  <v-row align="center" justify="center" length>
+                    <v-card
+                      elevation="0"
+                      max-width="344px"
+                      style="background-color: #ebcfc4"
+                    >
+                      <p>
+                        發生問題？ 寄信至
+                        <br /><a href="mailto:ntpu-su-21th-it@googlegroups.com"
+                          >ntpu-su-21th-it@googlegroups.com</a
+                        >
+                      </p>
+                    </v-card>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </v-card>
           </v-col>
         </v-row>
       </v-container>
@@ -210,6 +231,7 @@ export default {
             this.formTips = "Error! 現在非調查時間";
             this.tipsColor = "#FE7163";
             this.formLoadingShow = false;
+            this.formTipsShow = true;
           } else {
             this.formLoadingShow = false;
             this.formTipsShow = true;
