@@ -140,6 +140,29 @@
                   {{ formTips }}
                 </v-card>
               </v-row>
+              <div v-show="successApply">
+                <v-row align="center" justify="center" length>
+                  <br />
+                </v-row>
+                <v-row align="center" justify="center" length>
+                  <p>
+                    打開下方貼文並完成指定動作抽 Homepod
+                    mini、雙人電影票，趕快行動吧！如無顯示，請到學生會粉專找尋。
+                  </p>
+                </v-row>
+                <v-row align="center" justify="center" length>
+                  <iframe
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    allowfullscreen="true"
+                    frameborder="0"
+                    height="712"
+                    scrolling="no"
+                    src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FNTPUSU%2Fposts%2F4018299674857366&amp;width=500&amp;show_text=true&amp;appId=460917074889007&amp;height=712"
+                    style="border: none; overflow: hidden"
+                    width="500"
+                  ></iframe>
+                </v-row>
+              </div>
             </div>
             <br /><br />
             <v-card elevation="0">
@@ -220,6 +243,7 @@ export default {
           name: "二號候選人 - 黃朝盟教授",
         },
       ],
+      successApply: false,
     };
   },
   methods: {
@@ -314,6 +338,7 @@ export default {
             if (!response.data.err) {
               this.formTips = "成功投票";
               this.tipsColor = "#BDFE63";
+              this.successApply = true;
               localStorage.removeItem("stuid");
             } else {
               if (response.data.errCode == 3) {
