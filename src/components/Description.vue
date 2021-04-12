@@ -12,6 +12,19 @@
           <br />
         </v-row>
         <v-row align="center" justify="center" length>
+          <h1 style="color: red">請使用單一裝置與單一瀏覽器完成調查</h1>
+        </v-row>
+        <v-row align="center" justify="center" length>
+          <h2 style="color: red">
+            請避免使用 Facebook、IG、Line
+            等瀏覽器，請複製連結(包含本連結與專屬連結)到其他慣用瀏覽器 (如
+            Chrome、Firefox、Safari 等)
+          </h2>
+        </v-row>
+        <v-row align="center" justify="center" length>
+          <br />
+        </v-row>
+        <v-row align="center" justify="center" length>
           <iframe
             width="560"
             height="315"
