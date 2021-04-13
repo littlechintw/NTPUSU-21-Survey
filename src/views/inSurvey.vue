@@ -180,6 +180,8 @@
                           >ntpu-su-21th-it@googlegroups.com</a
                         >
                       </p>
+                      <br>
+                      <p style="color: red">信件撰寫請遵守信件禮儀，否則將有極大機率遭系統以垃圾郵件阻擋，進而導致無法收取信件</p>
                     </v-card>
                   </v-row>
                 </v-col>
