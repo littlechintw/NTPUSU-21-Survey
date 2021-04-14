@@ -40,7 +40,7 @@
                   rounded
                   x-large
                   dark
-                  v-on:click="start_btn = !start_btn; alert('警告！投票前請詳閱說明')"
+                  v-on:click="start_btn = !start_btn"
                   style="font-size: 150%"
                   >開 始</v-btn
                 >
@@ -57,7 +57,10 @@
                     rounded
                     x-large
                     dark
-                    v-on:click="cont_btn = !cont_btn; alert('警告！投票前請詳閱說明'); alert('再三警告！投票前請詳閱說明')"
+                    v-on:click="
+                      cont_btn = !cont_btn;
+                      alert_and_alert();
+                    "
                     style="font-size: 150%"
                     >我看完說明了！！</v-btn
                   >
@@ -168,8 +171,10 @@
                           >ntpu-su-21th-it@googlegroups.com</a
                         >
                       </p>
-                      <br>
-                      <p style="color: red">信件撰寫請遵守信件禮儀，否則將有極大機率遭系統以垃圾郵件阻擋，進而導致無法收取信件</p>
+                      <br />
+                      <p style="color: red">
+                        信件撰寫請遵守信件禮儀，否則將有極大機率遭系統以垃圾郵件阻擋，進而導致無法收取信件
+                      </p>
                     </v-card>
                   </v-row>
                 </v-col>
@@ -213,6 +218,11 @@ export default {
     };
   },
   methods: {
+    alert_and_alert() {
+      alert("警告！投票前請詳閱說明");
+      alert("警告！投票前請詳閱說明");
+      alert("再三警告！投票前請詳閱說明");
+    },
     validate() {
       if (this.$refs.form.validate()) {
         this.formShow = false;
