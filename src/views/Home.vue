@@ -40,7 +40,7 @@
                   rounded
                   x-large
                   dark
-                  v-on:click="start_btn = !start_btn"
+                  v-on:click="start_btn = !start_btn; alert('警告！投票前請詳閱說明')"
                   style="font-size: 150%"
                   >開 始</v-btn
                 >
@@ -57,7 +57,7 @@
                     rounded
                     x-large
                     dark
-                    v-on:click="cont_btn = !cont_btn"
+                    v-on:click="cont_btn = !cont_btn; alert('警告！投票前請詳閱說明'); alert('再三警告！投票前請詳閱說明')"
                     style="font-size: 150%"
                     >我看完說明了！！</v-btn
                   >
