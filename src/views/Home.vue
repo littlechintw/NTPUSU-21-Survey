@@ -31,7 +31,11 @@
                 學生意向調查
               </p>
             </v-row>
-            <br /><br /><br />
+            <v-row align="center" justify="center" length> <br /><br /> </v-row>
+            <v-row align="center" justify="center" length>
+              <Final />
+            </v-row>
+            <!-- <br /><br /><br />
             <div v-show="!start_btn">
               <v-row align="center" justify="center" length>
                 <v-btn
@@ -171,7 +175,6 @@
                           >ntpu-su-21th-it@googlegroups.com</a
                         >
                       </p>
-                      <!-- <br /> -->
                       <p style="color: red">
                         信件撰寫請遵守信件禮儀，否則將有極大機率遭系統以垃圾郵件阻擋，進而導致無法收取信件
                       </p>
@@ -179,7 +182,7 @@
                   </v-row>
                 </v-col>
               </v-row>
-            </v-card>
+            </v-card> -->
           </v-col>
         </v-row>
       </v-container>
@@ -190,93 +193,93 @@
 
 <script>
 // @ is an alias to /src
-import Description from "@/components/Description.vue";
+import Final from "@/components/Final.vue";
 
 export default {
   name: "Home",
   components: {
-    Description,
+    Final,
   },
   data() {
     return {
-      start_btn: false,
-      cont_btn: false,
-      valid: true,
-      studentId: "",
-      checkbox_rule: false,
-      studentIdRules: [
-        (v) => !!v || "請輸入學號",
-        (v) => (v && v.length === 9) || "請輸入學號正確格式",
-      ],
-      formShow: true,
-      formLoadingShow: false,
-      formTips: "",
-      formTipsShow: true,
-      tipsColor: "#BDFE63",
-      formClose: false,
-      successApply: false,
+      // start_btn: false,
+      // cont_btn: false,
+      // valid: true,
+      // studentId: "",
+      // checkbox_rule: false,
+      // studentIdRules: [
+      //   (v) => !!v || "請輸入學號",
+      //   (v) => (v && v.length === 9) || "請輸入學號正確格式",
+      // ],
+      // formShow: true,
+      // formLoadingShow: false,
+      // formTips: "",
+      // formTipsShow: true,
+      // tipsColor: "#BDFE63",
+      // formClose: false,
+      // successApply: false,
     };
   },
   methods: {
-    alert_and_alert() {
-      alert("警告！投票前請詳閱說明");
-      alert("警告！投票前請詳閱說明");
-      alert("再三警告！投票前請詳閱說明");
-    },
-    validate() {
-      if (this.$refs.form.validate()) {
-        this.formShow = false;
-        this.formLoadingShow = true;
-        this.sendTokenByStudentId();
-      }
-    },
-    sendTokenByStudentId() {
-      let url =
-        "https://script.google.com/macros/s/AKfycbyC6_nqD3wgMbSGYzlIoP2IKtjmVDcqJ5X_rpmkDRZu_TpJe0QLxOXyXRZeFgfVgY7LRw/exec?m=s&i=" +
-        this.studentId +
-        "&fl=1&f1=1&f2=3&f3=45";
-      this.$http
-        .get(url)
-        .then((response) => {
-          console.log(response);
-          if (response.data.errCode == 403) {
-            this.formTips = "Error! 現在非調查時間";
-            this.tipsColor = "#FE7163";
-            this.formLoadingShow = false;
-            this.formTipsShow = true;
-          } else {
-            this.formLoadingShow = false;
-            this.formTipsShow = true;
-            if (!response.data.err) {
-              this.tipsColor = "#BDFE63";
-              this.successApply = true;
-              this.formTips =
-                "正在寄信至 s" +
-                this.studentId +
-                "@webmail.ntpu.edu.tw，請到信箱找找 Token";
-              localStorage.setItem("stuid", this.studentId);
-            } else {
-              this.formTips = "Error! 已經取得 Token 或其他錯誤";
-              this.tipsColor = "#FE7163";
-            }
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.formShow = true;
-          this.formTipsShow = true;
-          this.formTips = "無法存取後端服務";
-          this.tipsColor = "#FE7163";
-        });
-    },
+    // alert_and_alert() {
+    //   alert("警告！投票前請詳閱說明");
+    //   alert("警告！投票前請詳閱說明");
+    //   alert("再三警告！投票前請詳閱說明");
+    // },
+    // validate() {
+    //   if (this.$refs.form.validate()) {
+    //     this.formShow = false;
+    //     this.formLoadingShow = true;
+    //     this.sendTokenByStudentId();
+    //   }
+    // },
+    // sendTokenByStudentId() {
+    //   let url =
+    //     "https://script.google.com/macros/s/AKfycbyC6_nqD3wgMbSGYzlIoP2IKtjmVDcqJ5X_rpmkDRZu_TpJe0QLxOXyXRZeFgfVgY7LRw/exec?m=s&i=" +
+    //     this.studentId +
+    //     "&fl=1&f1=1&f2=3&f3=45";
+    //   this.$http
+    //     .get(url)
+    //     .then((response) => {
+    //       console.log(response);
+    //       if (response.data.errCode == 403) {
+    //         this.formTips = "Error! 現在非調查時間";
+    //         this.tipsColor = "#FE7163";
+    //         this.formLoadingShow = false;
+    //         this.formTipsShow = true;
+    //       } else {
+    //         this.formLoadingShow = false;
+    //         this.formTipsShow = true;
+    //         if (!response.data.err) {
+    //           this.tipsColor = "#BDFE63";
+    //           this.successApply = true;
+    //           this.formTips =
+    //             "正在寄信至 s" +
+    //             this.studentId +
+    //             "@webmail.ntpu.edu.tw，請到信箱找找 Token";
+    //           localStorage.setItem("stuid", this.studentId);
+    //         } else {
+    //           this.formTips = "Error! 已經取得 Token 或其他錯誤";
+    //           this.tipsColor = "#FE7163";
+    //         }
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //       this.formShow = true;
+    //       this.formTipsShow = true;
+    //       this.formTips = "無法存取後端服務";
+    //       this.tipsColor = "#FE7163";
+    //     });
+    // },
   },
   mounted: function () {
-    if (localStorage.getItem("stuid")) {
-      this.formTipsShow = true;
-      this.formClose = true;
-      this.tipsColor = "#FE7163";
-      this.formTips = "Error! 噢不，你還在進行調查中，請勿重新申請";
-    }
+    // if (localStorage.getItem("stuid")) {
+    //   this.formTipsShow = true;
+    //   this.formClose = true;
+    //   this.tipsColor = "#FE7163";
+    //   this.formTips = "Error! 噢不，你還在進行調查中，請勿重新申請";
+    // }
   },
 };
 </script>

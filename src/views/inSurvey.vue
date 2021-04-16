@@ -366,28 +366,29 @@ export default {
     },
   },
   mounted: function () {
-    let params_id = this.$route.params.id;
-    if (!localStorage.getItem("stuid")) {
-      alert("你不能用這種方式繞過");
-      this.$router.push("/");
-    }
-    if (!params_id) {
-      alert("你不能用這種方式繞過");
-      this.$router.push("/");
-    }
+    this.$router.push("/");
+    // let params_id = this.$route.params.id;
+    // if (!localStorage.getItem("stuid")) {
+    //   alert("你不能用這種方式繞過");
+    //   this.$router.push("/");
+    // }
+    // if (!params_id) {
+    //   alert("你不能用這種方式繞過");
+    //   this.$router.push("/");
+    // }
 
-    var decodeStuId = "N/A";
-    try {
-      decodeStuId = base64.decode(params_id);
-    } catch (e) {
-      alert("你不能用這種方式繞過");
-      this.$router.push("/");
-    }
+    // var decodeStuId = "N/A";
+    // try {
+    //   decodeStuId = base64.decode(params_id);
+    // } catch (e) {
+    //   alert("你不能用這種方式繞過");
+    //   this.$router.push("/");
+    // }
 
-    if (decodeStuId != localStorage.getItem("stuid")) {
-      alert("你不能用這種方式繞過");
-      this.$router.push("/");
-    }
+    // if (decodeStuId != localStorage.getItem("stuid")) {
+    //   alert("你不能用這種方式繞過");
+    //   this.$router.push("/");
+    // }
   },
 };
 </script>
