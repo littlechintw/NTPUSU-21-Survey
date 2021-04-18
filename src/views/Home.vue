@@ -33,7 +33,8 @@
             </v-row>
             <v-row align="center" justify="center" length> <br /><br /> </v-row>
             <v-row align="center" justify="center" length>
-              <Final />
+              <!-- 此容已被神秘力量封鎖 -->
+              <!-- <Final /> -->
             </v-row>
             <!-- <br /><br /><br />
             <div v-show="!start_btn">
